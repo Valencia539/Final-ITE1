@@ -1,6 +1,5 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 
 class Program
 {
@@ -110,13 +109,9 @@ class Program
 
     static void EditStudent()
     {
-        Console.WriteLine("\n===== EDIT STUDENT =====");
-
-        Console.Write("Enter student number: ");
+        Console.WriteLine("\n===== EDIT STUDENT =====\nEnter student number: ");
         string studentNumber = Console.ReadLine();
-
         Student student = phonebook.FindStudent(studentNumber);
-
         if (student == null)
         {
             Console.WriteLine("Student number does not exist.");
@@ -124,25 +119,11 @@ class Program
         }
 
         int choice = 0;
-
         while (choice != 8)
         {
-            Console.WriteLine("\nHere is the existing information about "
-                + student.StudentNumber + ":");
-
+            Console.WriteLine($"\nHere is the existing information about {student.StudentNumber}:");
             phonebook.DisplayStudent(student);
-
-            Console.WriteLine("\nWhich information do you wish to change?");
-            Console.WriteLine("[1] Student number");
-            Console.WriteLine("[2] Surname");
-            Console.WriteLine("[3] Gender");
-            Console.WriteLine("[4] Occupation");
-            Console.WriteLine("[5] Country code");
-            Console.WriteLine("[6] Area code");
-            Console.WriteLine("[7] Phone number");
-            Console.WriteLine("[8] None - Go back to main menu");
-
-            Console.Write("Enter choice: ");
+            Console.WriteLine("\nWhich information do you wish to change?\n[1] Student number\n[2] Surname\n[3] Gender\n[4] Occupation\n[5] Country code\n[6] Area code\n[7] Phone number\n[8] None - Go back to main menu\nEnter choice: ");
 
             if (!int.TryParse(Console.ReadLine(), out choice))
             {
@@ -165,23 +146,12 @@ class Program
 
     static void SearchStudents()
     {
-        Console.WriteLine("\n===== SEARCH BY COUNTRY =====");
-
-        Console.WriteLine("From which country:");
-        Console.WriteLine("[1] Philippines");
-        Console.WriteLine("[2] Thailand");
-        Console.WriteLine("[3] Singapore");
-        Console.WriteLine("[4] Indonesia");
-        Console.WriteLine("[5] Malaysia");
-        Console.WriteLine("[6] ALL");
-        Console.WriteLine("[0] No More");
+        Console.WriteLine("\n===== SEARCH BY COUNTRY =====\nFrom which country:\n[1] Philippines\n[2] Thailand\n[3] Singapore\n[4] Indonesia\n[5] Malaysia\n[6] ALL\n[0] No More");
 
         List<int> selectedCodes = new List<int>();
-
-        int[] countryCodes = { 63, 66, 65, 62, 60 };
+        int[] countryCodes = {63, 66, 65, 62, 60};
 
         int choice;
-
         while (true)
         {
             Console.Write("Enter choice: ");
@@ -229,12 +199,9 @@ class Program
             return;
         }
 
-        List<Student> results =
-            phonebook.SearchByCountry(selectedCodes);
+        List<Student> results = phonebook.SearchByCountry(selectedCodes);
 
-        Console.WriteLine("\nHere are the students from "
-            + phonebook.GetSelectedCountries(selectedCodes) + ":");
-
+        Console.WriteLine($"\nHere are the students from {phonebook.GetSelectedCountries(selectedCodes)}:");
         phonebook.DisplayStudents(results);
     }
 }
@@ -250,9 +217,7 @@ class Student
     public int AreaCode { get; set; }
     public string PhoneNumber { get; set; }
 
-    public Student(string studentNumber, string surname,
-        string firstName, string occupation, char gender,
-        int countryCode, int areaCode, string phoneNumber)
+    public Student(string studentNumber, string surname, string firstName, string occupation, char gender, int countryCode, int areaCode, string phoneNumber)
     {
         StudentNumber = studentNumber;
         Surname = surname;
@@ -269,8 +234,7 @@ class Phonebook
 {
     private List<Student> students = new List<Student>();
 
-    private Dictionary<int, string> countries =
-        new Dictionary<int, string>()
+    private Dictionary<int, string> countries = new Dictionary<int, string>()
     {
         { 60, "Malaysia" },
         { 62, "Indonesia" },
@@ -278,12 +242,10 @@ class Phonebook
         { 65, "Singapore" },
         { 66, "Thailand" }
     };
-
     public bool IsValidCountryCode(int code)
     {
         return countries.ContainsKey(code);
     }
-
     public string GetCountryName(int code)
     {
         if (countries.ContainsKey(code))
@@ -291,7 +253,6 @@ class Phonebook
 
         return "Unknown";
     }
-
     public Student FindStudent(string studentNumber)
     {
         for (int i = 0; i < students.Count; i++)
@@ -301,24 +262,18 @@ class Phonebook
                 return students[i];
             }
         }
-
         return null;
     }
-
     public bool StudentNumberExists(string studentNumber)
     {
         return FindStudent(studentNumber) != null;
     }
-
     public bool AddStudent(Student student)
     {
-        if (StudentNumberExists(student.StudentNumber))
-            return false;
-
+        if (StudentNumberExists(student.StudentNumber)){return false;}
         students.Add(student);
         return true;
     }
-
     public void EditStudent(Student student, int choice)
     {
         switch (choice)
@@ -326,27 +281,21 @@ class Phonebook
             case 1:
                 Console.Write("Enter new student number: ");
                 string newNumber = Console.ReadLine();
-
                 Student existing = FindStudent(newNumber);
-
                 if (existing != null && existing != student)
                 {
                     Console.WriteLine("Student number already exists.");
                     break;
                 }
-
                 student.StudentNumber = newNumber;
                 break;
-
             case 2:
                 Console.Write("Enter new surname: ");
                 student.Surname = Console.ReadLine();
                 break;
-
             case 3:
                 Console.Write("Enter new gender (M/F): ");
                 string input = Console.ReadLine().ToUpper();
-
                 if (input == "M" || input == "F")
                 {
                     student.Gender = input[0];
@@ -355,19 +304,14 @@ class Phonebook
                 {
                     Console.WriteLine("Invalid gender.");
                 }
-
                 break;
-
             case 4:
                 Console.Write("Enter new occupation: ");
                 student.Occupation = Console.ReadLine();
                 break;
-
             case 5:
                 Console.Write("Enter new country code: ");
-
-                if (int.TryParse(Console.ReadLine(), out int code)
-                    && IsValidCountryCode(code))
+                if (int.TryParse(Console.ReadLine(), out int code) && IsValidCountryCode(code))
                 {
                     student.CountryCode = code;
                 }
@@ -375,14 +319,10 @@ class Phonebook
                 {
                     Console.WriteLine("Invalid country code.");
                 }
-
                 break;
-
             case 6:
                 Console.Write("Enter new area code: ");
-
-                if (int.TryParse(Console.ReadLine(), out int area)
-                    && area >= 0)
+                if (int.TryParse(Console.ReadLine(), out int area) && area >= 0)
                 {
                     student.AreaCode = area;
                 }
@@ -390,9 +330,7 @@ class Phonebook
                 {
                     Console.WriteLine("Invalid area code.");
                 }
-
                 break;
-
             case 7:
                 Console.Write("Enter new phone number: ");
                 student.PhoneNumber = Console.ReadLine();
@@ -402,22 +340,21 @@ class Phonebook
 
     public List<Student> SearchByCountry(List<int> selectedCodes)
     {
-        return students
-            .Where(s => selectedCodes.Contains(s.CountryCode))
-            .OrderBy(s => s.Surname)
-            .ThenBy(s => s.FirstName)
-            .ToList();
+        List<Student> results = new List<Student>();
+        foreach (Student s in students)
+        {
+            if (selectedCodes.Contains(s.CountryCode))
+            {
+                results.Add(s);
+            }
+        }
+        return results;
     }
 
     public void DisplayStudent(Student student)
     {
-        Console.WriteLine(
-            $"{student.FirstName} {student.Surname} is a " +
-            $"{student.Occupation}. His/Her number is " +
-            $"{student.CountryCode}-{student.AreaCode}-{student.PhoneNumber}"
-        );
+        Console.WriteLine($"{student.FirstName} {student.Surname} is a {student.Occupation}. His/Her number is {student.CountryCode}-{student.AreaCode}-{student.PhoneNumber}");
     }
-
     public void DisplayStudents(List<Student> results)
     {
         if (results.Count == 0)
@@ -425,26 +362,24 @@ class Phonebook
             Console.WriteLine("No students found.");
             return;
         }
-
         foreach (Student student in results)
         {
-            Console.WriteLine(
-                $"{student.Surname}, {student.FirstName}, " +
-                $"with student number {student.StudentNumber}, " +
-                $"is a {student.Occupation}. " +
-                $"His/Her phone number is " +
-                $"{student.CountryCode}-{student.AreaCode}-{student.PhoneNumber}"
-            );
+            Console.WriteLine($"{student.Surname}, {student.FirstName}, with student number {student.StudentNumber}, is a {student.Occupation}. His/Her phone number is {student.CountryCode}-{student.AreaCode}-{student.PhoneNumber}");
         }
     }
-
     public string GetSelectedCountries(List<int> codes)
     {
-        return string.Join(" and ",
-            codes.Select(code => countries[code]));
+        string result = "";
+        for (int i = 0; i < codes.Count; i++)
+        {
+            if (i > 0)
+            {
+                result += " and ";
+            }
+            result += countries[codes[i]];
+        }
+        return result;
     }
-
-    // Get all country codes
     public List<int> GetAllCountryCodes()
     {
         return countries.Keys.ToList();
