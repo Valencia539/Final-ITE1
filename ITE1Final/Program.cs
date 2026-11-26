@@ -338,7 +338,7 @@ class Phonebook
         }
     }
 
-    public List<Student> SearchByCountry(List<int> selectedCodes)
+   public List<Student> SearchByCountry(List<int> selectedCodes)
     {
         List<Student> results = new List<Student>();
         foreach (Student s in students)
@@ -348,9 +348,9 @@ class Phonebook
                 results.Add(s);
             }
         }
+        results.Sort((a, b) => string.Compare(a.Surname, b.Surname, true));
         return results;
     }
-
     public void DisplayStudent(Student student)
     {
         Console.WriteLine($"{student.FirstName} {student.Surname} is a {student.Occupation}. His/Her number is {student.CountryCode}-{student.AreaCode}-{student.PhoneNumber}");
@@ -382,6 +382,6 @@ class Phonebook
     }
     public List<int> GetAllCountryCodes()
     {
-        return countries.Keys.ToList();
+        return new List<int>(countries.Keys);
     }
 }
