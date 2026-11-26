@@ -1,0 +1,14 @@
+C:\Users\ACER\Desktop\ITE2Final\bin\Debug\net10.0\ITE2Final.exe
+C:\Users\ACER\Desktop\ITE2Final\bin\Debug\net10.0\ITE2Final.deps.json
+C:\Users\ACER\Desktop\ITE2Final\bin\Debug\net10.0\ITE2Final.runtimeconfig.json
+C:\Users\ACER\Desktop\ITE2Final\bin\Debug\net10.0\ITE2Final.dll
+C:\Users\ACER\Desktop\ITE2Final\bin\Debug\net10.0\ITE2Final.pdb
+C:\Users\ACER\Desktop\ITE2Final\obj\Debug\net10.0\ITE2Final.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ACER\Desktop\ITE2Final\obj\Debug\net10.0\ITE2Final.AssemblyInfoInputs.cache
+C:\Users\ACER\Desktop\ITE2Final\obj\Debug\net10.0\ITE2Final.AssemblyInfo.cs
+C:\Users\ACER\Desktop\ITE2Final\obj\Debug\net10.0\ITE2Final.csproj.CoreCompileInputs.cache
+C:\Users\ACER\Desktop\ITE2Final\obj\Debug\net10.0\ITE2Final.dll
+C:\Users\ACER\Desktop\ITE2Final\obj\Debug\net10.0\refint\ITE2Final.dll
+C:\Users\ACER\Desktop\ITE2Final\obj\Debug\net10.0\ITE2Final.pdb
+C:\Users\ACER\Desktop\ITE2Final\obj\Debug\net10.0\ITE2Final.genruntimeconfig.cache
+C:\Users\ACER\Desktop\ITE2Final\obj\Debug\net10.0\ref\ITE2Final.dll
